@@ -1,5 +1,4 @@
 <?php 
-
-echo "hieu 2";
+    class 
 
 ?>
