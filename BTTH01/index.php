@@ -3,7 +3,6 @@
     require "classes/StudentDAO.php";
     
     $studentDAO = new StudentDAO();
-
     $students = $studentDAO->getAll();
 ?>
 
