@@ -13,8 +13,6 @@
             $this->diem = $diem;
         }
 
-        // Các phương thức getter và setter cho các thuộc tính
-
         public function getId() {
             return $this->id;
         }
