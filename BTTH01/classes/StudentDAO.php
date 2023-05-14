@@ -19,7 +19,7 @@
         public function create(Student $student) {
             // Thêm sinh viên vào mảng và ghi vào file
             $this->students[] = $student;
-            $this->saveDataToFile();
+            $this->saveDataToFile();;
         }
     
         public function read($id) {
@@ -60,6 +60,7 @@
             // Trả về danh sách sinh viên
             return $this->students;
         }
+        
         
         private function saveDataToFile() {
             // Ghi mảng sinh viên vào file
