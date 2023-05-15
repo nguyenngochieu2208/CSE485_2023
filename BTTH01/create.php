@@ -2,7 +2,6 @@
   require "classes/Student.php";
   require "classes/StudentDAO.php";
 
-  $studentDAO = new StudentDAO();
   $Id = "";
   $Name = "";
   $Class = "";
@@ -17,10 +16,12 @@
 
   if ($Id != "" && $Name != "" && $Class != "" && $Point != "") {
     $student = new Student($Id, $Name, $Class, $Point);
-    $studentDAO->create($student);
 
+    $studentDAO = new StudentDAO();
+    $studentDAO->create($student);
+    
     header('Location: index.php');
-    exit();
+    // exit();
   }
   ?>
 
@@ -30,7 +31,7 @@
  </head>
 
  <body>
-   <form style="width: 24%; margin: 0 auto;" method="POST">
+   <form style="width: 24%; margin: 0 auto;" method="POST" action="create.php">
      <div class="mb-3">
        <label for="Id" class="form-label">Id: </label>
        <input type="text" class="form-control" name="Id" id="Id">

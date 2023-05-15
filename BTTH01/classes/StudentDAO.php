@@ -21,6 +21,40 @@
             $this->students[] = $student;
             $this->saveDataToFile();
         }
+
+        public function read($id) {
+            // Tìm sinh viên theo id
+            foreach ($this->students as $student) {
+                if ($student->getId() == $id) {
+                    return $student;
+                }
+            }
+            return null;
+        }
+
+        public function update(Student $student) {
+            // Cập nhật thông tin sinh viên và ghi vào file
+            foreach ($this->students as $key => $sv) {
+                if ($sv->getId() == $student->getId()) {
+                    $this->students[$key] = $student;
+                    $this->saveDataToFile();
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public function delete($id) {
+            // Xóa sinh viên theo id và ghi vào file
+            foreach ($this->students as $key => $student) {
+                if ($student->getId() == $id) {
+                    unset($this->students[$key]);
+                    $this->saveDataToFile();
+                    return true;
+                }
+                }
+                    return false;
+        }
     
         public function getAll() {
             // Trả về danh sách sinh viên
@@ -31,7 +65,7 @@
             // Ghi mảng sinh viên vào file
             $data = '';
             foreach ($this->students as $student) {
-                $data .= "{$student->getId()},{$student->getTen()},{$student->getLop()},{$student->getDiem()}\n";
+                $data .= "\n{$student->getId()},{$student->getTen()},{$student->getLop()},{$student->getDiem()}";
             }
             print_r($data) ;
             file_put_contents($this->dataFile, $data);
