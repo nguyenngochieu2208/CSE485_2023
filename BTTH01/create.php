@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 <?php
   require "classes/Student.php";
   require "classes/StudentDAO.php";
 
   $studentDAO = new StudentDAO();
   // print_r($studentDAO);
+=======
+ <?php
+  require "classes/Student.php";
+  require "classes/StudentDAO.php";
+
+>>>>>>> origin/main
   $Id = "";
   $Name = "";
   $Class = "";
@@ -18,9 +25,17 @@
 
   if ($Id != "" && $Name != "" && $Class != "" && $Point != "") {
     $student = new Student($Id, $Name, $Class, $Point);
+<<<<<<< HEAD
     $studentDAO->create($student);
 
     // header('Location: index.php');
+=======
+
+    $studentDAO = new StudentDAO();
+    $studentDAO->create($student);
+    
+    header('Location: index.php');
+>>>>>>> origin/main
     // exit();
   }
   ?>
@@ -31,7 +46,11 @@
  </head>
 
  <body>
+<<<<<<< HEAD
    <form style="width: 24%; margin: 0 auto;" method="POST">
+=======
+   <form style="width: 24%; margin: 0 auto;" method="POST" action="create.php">
+>>>>>>> origin/main
      <div class="mb-3">
        <label for="Id" class="form-label">Id: </label>
        <input type="text" class="form-control" name="Id" id="Id">
