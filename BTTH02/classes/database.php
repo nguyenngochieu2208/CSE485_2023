@@ -18,8 +18,8 @@
             }
         }
 
-        public function getAll($table, $conditions = null){
-            $sql = "SELECT * FROM $table";
+        public function sqlPDO($sql, $conditions = null){
+            // $sql = "SELECT * FROM $table";
             // kiểm tra xem có câu lệnh điều kiện không, $conditions là biến chứa điều kiện
             if($conditions !== null){
                 $sql .= $conditions;

@@ -11,7 +11,7 @@
             $this->ten = $ten;
             $this->lop = $lop;
             $this->diem = $diem;
-        }
+        }   
 
         public function getId() {
             return $this->id;
