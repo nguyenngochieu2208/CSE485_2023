@@ -3,7 +3,7 @@
         private $host = "localhost";
         private $username = "root";
         private $password = "";
-        private $database = "quanlysv";
+        private $database = "btth2";
         private $conn ;
 
         public function __construct()
@@ -18,7 +18,7 @@
             }
         }
 
-        public function sqlPDO($sql, $conditions = null){
+        public function sqlGetPDO($sql, $conditions = null){
             // $sql = "SELECT * FROM $table";
             // kiểm tra xem có câu lệnh điều kiện không, $conditions là biến chứa điều kiện
             if($conditions !== null){
@@ -33,7 +33,13 @@
             return $result;
         }
 
-
+        public function sqlPDO($sql){
+    
+            // phần lệnh truy vấn
+            $stmt = $this->conn->prepare($sql);
+            $check = $stmt->execute();
+            return $check;
+        }
 
     }
 ?>

@@ -1,3 +1,42 @@
+<?php   
+    require "../classes/database.php";
+    require "../classes/khoahocDAO.php";
+    require "../classes/giangVienDAO.php";
+   
+
+    $db = new Database();
+    $giangVienDAO = new giangVienDAO($db);
+    $data = $giangVienDAO->getGV("SELECT IDGiangVien,Ten FROM giangvien");
+
+    //____________________________________________________________________
+
+    $IDGiangVien="";
+    $tenKH="";
+    $giaiDoan="";
+    $hocKy="";
+
+    if(isset($_POST['them'])){
+        $IDGiangVien=$_POST['gv'];
+        $tenKH=$_POST['ten'];
+        $giaiDoan=$_POST['giaidoan'];
+        $hocKy=$_POST['hocky'];
+    }
+
+    if ($tenKH != "" && $IDGiangVien != "" && $giaiDoan != "" && $hocKy != "" ) {
+
+        $db = new Database();
+        $khoahocDAO = new khoahocDAO($db);
+
+       
+
+        if ($khoahocDAO->addKH($IDGiangVien, $tenKH, $giaiDoan, $hocKy) ) {
+            header("Location: admin.php");
+        } else {
+            echo "Thêm môn học thất bại";
+        }
+    }   
+?>
+
 <head>
     <title>Thêm môn mới</title>
     <link rel="stylesheet" href="../assets/css/main.css">
@@ -20,22 +59,29 @@
 <div class="content">
         <div class="container">
             <div class="row box_content mt-5">
-                <form class="col-12 col-sm-12" method="POST">
+                <form class="col-12 col-sm-12" method="POST" action="themmonhoc.php">
                     <div class="input-group">
-                        <span class="input-group-text">Tên môn học</span>
-                        <input name="Name" type="text" class="form-control">
+                        <span class="input-group-text">Tên Môn Học</span>
+                        <input name="ten" type="text" class="form-control">
                     </div>
                     <div class="input-group">
-                        <span class="input-group-text">Id</span>
-                        <input name="Id" type="number" class="form-control">
+                        <span class="input-group-text">Giai Đoạn</span>
+                        <input name="giaidoan" type="text" class="form-control">
                     </div>
                     <div class="input-group">
-                        <span class="input-group-text">Thời gian môn</span>
-                        <input name="Date" type="text" class="form-control">
+                        <span class="input-group-text">Học Kỳ</span>
+                        <input name="hocky" type="number" class="form-control">
                     </div>
                     <div class="input-group">
-                        <span class="input-group-text">Giáo viên</span>
-                        <input name="Teacher" type="text" class="form-control">
+                        <select name="gv" id="gv">
+                            <option value="" disabled selected>Giảng Viên</option>
+                            <?php 
+                                foreach ($data as $giangvien){
+                            ?>
+                             <option value="<?= $giangvien["IDGiangVien"] ?>"><?= $giangvien["Ten"] ?></option>
+                            <?php } ?>
+                            
+                        </select>
                     </div>
                     <div><input class="add-btn btn btn-primary" type="submit" name="them" value="Thêm"></div>
                 </form>

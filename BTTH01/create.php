@@ -1,37 +1,14 @@
-<<<<<<< HEAD
 
 
 +<?php 
     require "classes/Student.php";
     require "classes/StudentDAO.php";
     
-=======
- <?php
-  require "classes/Student.php";
-  require "classes/StudentDAO.php";
-
-  $Id = "";
-  $Name = "";
-  $Class = "";
-  $Point = "";
-
-  if (isset($_POST["them"])) {
-    $Id = $_POST["Id"];
-    $Name = $_POST["Name"];
-    $Class = $_POST["Class"];
-    $Point = $_POST["Point"];
-  }
-
-  if ($Id != "" && $Name != "" && $Class != "" && $Point != "") {
-    $student = new Student($Id, $Name, $Class, $Point);
-
->>>>>>> 3367d708035f29714113b174cef7eba87122e2f6
     $studentDAO = new StudentDAO();
     $studentDAO->create($student);
     
     header('Location: index.php');
     // exit();
-  }
   ?>
 
  <head>

@@ -17,6 +17,10 @@
                     <a href="./themmonhoc.php" class="add_btn btn btn-primary">
                         <i class='bx bx-folder-plus'></i> Thêm môn học
                     </a>
+                    
+                    <a href="./themlop.php" class="add_btn btn btn-primary">
+                        <i class='bx bx-folder-plus'></i> Thêm lớp
+                    </a>
                 </div>
             </div>
 

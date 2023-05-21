@@ -35,6 +35,9 @@ CREATE TABLE IF NOT EXISTS `khoahoc` (
   `MaKhoaHoc` varchar(50) NOT NULL,
   `TieuDe` varchar(100) NOT NULL,
   `MoTa` varchar(1000) NOT NULL,
+  `TenKhoaHoc` varchar(100) NOT NULL,
+  `GiaDoan` varchar(100) NOT NULL,
+  `HocKy` int(11) NOT NULL,
   PRIMARY KEY (`IDKhoaHoc`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -72,14 +75,8 @@ CREATE TABLE IF NOT EXISTS `sinhvien` (
   `NgaySinh` date NOT NULL,
   `Email` varchar(50) NOT NULL DEFAULT '@',
   `SDT` int(11) NOT NULL,
-  `IDKhoaHoc` int(11) NOT NULL,
-  `TenKhoaHoc` varchar(100) NOT NULL,
-  `GiaDoan` int(11) NOT NULL,
-  `HocKy` int(11) NOT NULL,
   `MatKhau` varchar(100) NOT NULL,
-  PRIMARY KEY (`IDSinhVien`),
-  KEY `FK_sinhvien_khoahoc` (`IDKhoaHoc`),
-  CONSTRAINT `FK_sinhvien_khoahoc` FOREIGN KEY (`IDKhoaHoc`) REFERENCES `khoahoc` (`IDKhoaHoc`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  PRIMARY KEY (`IDSinhVien`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
@@ -97,6 +94,20 @@ CREATE TABLE IF NOT EXISTS `suthamdu` (
   CONSTRAINT `FK_suthamdu_khoahoc` FOREIGN KEY (`IDKhoaHoc`) REFERENCES `khoahoc` (`IDKhoaHoc`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_suthamdu_lop` FOREIGN KEY (`IDLop`) REFERENCES `lop` (`IDLop`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `FK_suthamdu_sinhvien` FOREIGN KEY (`IDSinhVien`) REFERENCES `sinhvien` (`IDSinhVien`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Data exporting was unselected.
+
+-- Dumping structure for table btth2.thamgiakhoahoc
+CREATE TABLE IF NOT EXISTS `thamgiakhoahoc` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `IDKhoaHoc` int(11) NOT NULL,
+  `IDSinhVien` int(11) NOT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `FK_thamgiakhoahoc_khoahoc` (`IDKhoaHoc`),
+  KEY `FK_thamgiakhoahoc_sinhvien` (`IDSinhVien`),
+  CONSTRAINT `FK_thamgiakhoahoc_khoahoc` FOREIGN KEY (`IDKhoaHoc`) REFERENCES `khoahoc` (`IDKhoaHoc`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `FK_thamgiakhoahoc_sinhvien` FOREIGN KEY (`IDSinhVien`) REFERENCES `sinhvien` (`IDSinhVien`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Data exporting was unselected.
