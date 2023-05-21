@@ -11,24 +11,30 @@
     <div class="login">
         <div class="content">
             <div class="img">
-                <img src="./img/website-ban-hang-1.png" alt="">
+                <img src="./img/website-ban-hang-1.png" alt=""> 
             </div>
         </div>
         <form class="form">
-            <p class="form-title">Sign up to your account</p>
+            <p class="form-title">Đăng kí tài khoản của bạn</p>
             <div class="input-container">
-                <input type="name" name="Name" id="exampleInputName" placeholder="Enter your name">
+                <input type="name" name="Name" id="exampleInputName" placeholder="Vui lòng nhập tên">
             </div>
             <div class="input-container">
-                <input type="email" name="Email" id="exampleInputEmail1" placeholder="Enter email">
+                <input type="number" name="Number" id="exampleInputNumber" placeholder="Vui lòng nhập số">
+            </div>
+            <div class="input-container">
+                <input type="date" name="Birthday" >
+            </div>
+            <div class="input-container">
+                <input type="email" name="Email" id="exampleInputEmail1" placeholder="Nhập email">
                 <span>
                 </span>
             </div>
             <div class="input-container">
-                <input type="password" name="Pass" id="exampleInputPassword" placeholder="Enter password">
+                <input type="password" name="Pass" id="exampleInputPassword" placeholder="Nhập mật khẩu">
             </div>
             <button type="submit" class="submit" name="them">
-                Sign up
+                Đăng kí
             </button>
 
         </form>

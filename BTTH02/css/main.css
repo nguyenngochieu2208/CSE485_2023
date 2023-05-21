@@ -15,7 +15,11 @@
     display: flex;
     flex-wrap: wrap;
     top: 26%;
-    left: 27%;
+    left: 23%;
+}
+
+img {
+  height: 491px;
 }
 
 .form {

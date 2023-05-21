@@ -15,22 +15,22 @@
             </div>
         </div>
         <form class="form">
-            <p class="form-title">Sign in to your account</p>
+            <p class="form-title">Đăng nhập tài khoản của bạn</p>
             <div class="input-container">
-                <input type="email" name="Email" id="exampleInputEmail" placeholder="Enter email">
+                <input type="email" name="Email" id="exampleInputEmail" placeholder="Nhập email">
                 <span>
                 </span>
             </div>
             <div class="input-container">
-                <input type="password" name="Pass" id="exampleInputPassword" placeholder="Enter password">
+                <input type="password" name="Pass" id="exampleInputPassword" placeholder="Nhập password">
             </div>
             <button type="submit" name="login" class="submit">
-                Sign in
+                Đăng nhập
             </button>
 
             <p class="signup-link">
-                No account?
-                <a href="">Sign up</a>
+                Chưa có tài khoản?
+                <a href="">Đăng kí</a>
             </p>
         </form>
     </div>
