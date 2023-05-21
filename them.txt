@@ -1,0 +1,70 @@
+<?php
+// Xử lý dữ liệu khi người dùng nhấn nút submit
+if (isset($_POST['submit'])) {
+ // Lấy dữ liệu từ form
+ $student_id = $_POST['student_id'];
+ $student_name = $_POST['student_name'];
+ $student_age = $_POST['student_age'];
+ $student_grade = $_POST['student_grade'];
+
+ // Kiểm tra dữ liệu hợp lệ
+ if ($student_id == "" || $student_name == "" || $student_age == "" || $student_grade == "") {
+ echo "Bạn phải nhập đầy đủ thông tin";
+ } else {
+ // Tạo một chuỗi dữ liệu theo cấu trúc id,name,age,grade
+ $data = "$student_id,$student_name,$student_age,$student_grade\n";
+
+ // Mở file students.txt để đọc dữ liệu
+ $file = fopen("students.txt", "r");
+
+ // Kiểm tra file có mở được không
+ if ($file) {
+ // Đọc dữ liệu từ file vào một mảng
+ $students = array();
+ while (!feof($file)) {
+ $line = fgets($file);
+ array_push($students, $line);
+ }
+
+ // Đóng file
+ fclose($file);
+
+ // Kiểm tra xem chuỗi dữ liệu có trùng với một phần tử nào trong mảng không
+ if (in_array($data, $students)) {
+ echo "Dữ liệu đã tồn tại trong file.";
+ } else {
+ // Nếu không có dữ liệu trùng lặp, mở lại file để ghi dữ liệu
+ $file = fopen("students.txt", "a");
+
+ // Ghi dữ liệu vào file
+ fwrite($file, $data);
+
+ // Đóng file
+ fclose($file);
+
+ echo "Thêm sinh viên thành công";
+ }
+ } else {
+ echo "Không thể mở file";
+ }
+ }
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="UTF-8">
+ <title>Form nhập dữ liệu sinh viên</title>
+</head>
+<body>
+ <h1>Form nhập dữ liệu sinh viên</h1>
+ <form action="" method="post">
+ <p>Mã sinh viên: <input type="text" name="student_id"></p>
+ <p>Tên sinh viên: <input type="text" name="student_name"></p>
+ <p>Tuổi: <input type="number" name="student_age"></p>
+ <p>Điểm: <input type="number" name="student_grade"></p>
+ <p><input type="submit" name="submit" value="Thêm"></p>
+ </form>
+</body>
+</html>
