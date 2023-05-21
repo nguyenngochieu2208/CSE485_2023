@@ -14,24 +14,24 @@
                 <img src="./img/website-ban-hang-1.png" alt="">
             </div>
         </div>
-        <div class="form">
+        <form class="form">
             <p class="form-title">Sign up to your account</p>
             <div class="input-container">
-                <input type="name" placeholder="Enter your name">
+                <input type="name" name="Name" id="exampleInputName" placeholder="Enter your name">
             </div>
             <div class="input-container">
-                <input type="email" placeholder="Enter email">
+                <input type="email" name="Email" id="exampleInputEmail1" placeholder="Enter email">
                 <span>
                 </span>
             </div>
             <div class="input-container">
-                <input type="password" placeholder="Enter password">
+                <input type="password" name="Pass" id="exampleInputPassword" placeholder="Enter password">
             </div>
-            <button type="submit" class="submit">
+            <button type="submit" class="submit" name="them">
                 Sign up
             </button>
 
-        </div>
+        </form>
     </div>
 
 
