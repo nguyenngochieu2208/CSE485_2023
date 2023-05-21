@@ -14,17 +14,17 @@
                 <img src="./img/website-ban-hang-1.png" alt="">
             </div>
         </div>
-        <div class="form">
+        <form class="form">
             <p class="form-title">Sign in to your account</p>
             <div class="input-container">
-                <input type="email" placeholder="Enter email">
+                <input type="email" name="Email" id="exampleInputEmail" placeholder="Enter email">
                 <span>
                 </span>
             </div>
             <div class="input-container">
-                <input type="password" placeholder="Enter password">
+                <input type="password" name="Pass" id="exampleInputPassword" placeholder="Enter password">
             </div>
-            <button type="submit" class="submit">
+            <button type="submit" name="login" class="submit">
                 Sign in
             </button>
 
@@ -32,7 +32,7 @@
                 No account?
                 <a href="">Sign up</a>
             </p>
-        </div>
+        </form>
     </div>
 
 
