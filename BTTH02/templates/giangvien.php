@@ -1,17 +1,20 @@
-<?php
-require "../classes/database.php";
-session_start();
+<?php session_start();
+    require "../classes/database.php";
 
-$IDSinhVien = $_GET['id'];
+    $IDGiangVien = $_GET['id'];
 
-$db = new Database();
-
-$datas = $db->sqlGetPDO("SELECT t2.trangthai, t2.IDLop,t3.TenKhoaHoc,t3.IDKhoaHoc, t3.GiaiDoan, t4.Ten
-    FROM thamgiakhoahoc AS t1
-    JOIN lop AS t2 ON t1.IDKhoaHoc = t2.IDKhoaHoc
+    $_SESSION['IDGiangVien'] = $IDGiangVien;
+    
+    $db1 = new Database();
+    
+    $datas = $db1->sqlGetPDO("SELECT t1.IDGiangVien, t2.trangthai,t2.KhoangThoiGian,t2.IDLop, t3.TenKhoaHoc, t3.GiaiDoan, t3.HocKy
+    FROM giangvien AS t1
+    JOIN lop AS t2 ON t1.IDGiangVien = t2.IDGiangVien
     JOIN khoahoc AS t3 ON t2.IDKhoaHoc = t3.IDKhoaHoc
-    JOIN giangvien AS t4 ON t3.IDGiangVien = t4.IDGiangVien
-    WHERE t1.IDSinhVien = '$IDSinhVien'; ");
+    WHERE t1.IDGiangVien = '$IDGiangVien'
+    ");
+
+
 ?>
 
 <head>
@@ -25,14 +28,13 @@ $datas = $db->sqlGetPDO("SELECT t2.trangthai, t2.IDLop,t3.TenKhoaHoc,t3.IDKhoaHo
     <div class="content">
         <div class="row content_text">
             <div class="box_text col-12">
-                <h1 class="">Sinh viên</h1>
+                <h1 class="">Giảng Viên</h1>
                 <button class="btn btn-primary">
                     <a class="text-white text-decoration-none" href="dangxuat.php">Đăng xuất</a>
                 </button>
                 <hr>
                 <h2>Danh sách khóa học</h2>
             </div>
-
         </div>
     </div>
 
@@ -44,25 +46,23 @@ $datas = $db->sqlGetPDO("SELECT t2.trangthai, t2.IDLop,t3.TenKhoaHoc,t3.IDKhoaHo
                         <img src="../assets/images/anhLogin.png" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title"><?= $data['TenKhoaHoc'] ?></h5>
+                            <p class="card-text"><?= $data['KhoangThoiGian'] ?></p>
                             <p class="card-text"><?= $data['GiaiDoan'] ?></p>
-                            <p class="card-text"><?= $data['Ten'] ?></p>
+                            <p class="card-text"><?= $data['HocKy'] ?></p>
                             <?php
                             if ($data['trangthai'] == 0) {
                                 echo
                                 ' <p class="card-text text-danger">
                                     Đang đóng
-                                </p>
-                                <a href="#" class="btn btn-primary">Điểm Danh</a>
-                                ';
+                                </p>';
                             } else {
                                 echo
                                 ' <p class="card-text text-success">
                                     Đang mở
-                                </p>
-                                
-                                <a href="./diemdanh.php?idLop='.$data['IDLop'].'&idSinhvien='.$IDSinhVien.'&idKhoahoc='.$data['IDKhoaHoc'].'" class="btn btn-primary">Điểm Danh</a>';
+                                </p>';
                             }
                             ?>
+                            <a class="btn btn-primary text-white text-decoration-none" href="quanlydiemdanh.php?idLop=<?= $data['IDLop']?>">Quản Lý Điểm Danh</a>   
                             
                         </div>
                     </div>

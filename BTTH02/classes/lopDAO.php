@@ -26,7 +26,7 @@
         }
 
         public function updateStatusLop($IDLop, $Status){
-            $sql = "UPDATE lop SET status = '$Status' WHERE IDLop = '$IDLop' ";
+            $sql = "UPDATE lop SET trangthai = '$Status' WHERE IDLop = '$IDLop' ";
             $check = $this->db->sqlPDO($sql);
 
             return $check;

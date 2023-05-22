@@ -1,3 +1,16 @@
+<?php
+    require "../classes/database.php";
+
+    $db = new Database();
+
+    $datas = $db->sqlGetPDO("SELECT t1.IDGiangVien, t2.trangthai,t2.KhoangThoiGian,t2.IDLop, t3.TenKhoaHoc, t3.GiaiDoan, t3.HocKy
+    FROM giangvien AS t1
+    JOIN lop AS t2 ON t1.IDGiangVien = t2.IDGiangVien
+    JOIN khoahoc AS t3 ON t2.IDKhoaHoc = t3.IDKhoaHoc
+    ");
+
+?>
+
 <head>
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -30,36 +43,32 @@
     <div class="home mt-5">
         <div class="container fluid">
             <div class="row">
-                <div class="card me-3" style="width: 18rem;">
-                    <img src="../assets/images/anhLogin.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Công Nghệ Web</h5>
-                        <p class="card-text">17/04/2023 -> 18/06/2023</p>
-                        <p class="card-text">Kiều Tuấn Dũng</p>
-                        <a href="./diemdanh.php" class="btn btn-primary">Kiểm tra</a>
+            <?php foreach ($datas as $data) { ?>
+                    <div class="card me-3" style="width: 18rem;">
+                        <img src="../assets/images/anhLogin.png" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title"><?= $data['TenKhoaHoc'] ?></h5>
+                            <p class="card-text"><?= $data['KhoangThoiGian'] ?></p>
+                            <p class="card-text"><?= $data['GiaiDoan'] ?></p>
+                            <p class="card-text"><?= $data['HocKy'] ?></p>
+                            <?php
+                            if ($data['trangthai'] == 0) {
+                                echo
+                                ' <p class="card-text text-danger">
+                                    Đang đóng
+                                </p>';
+                            } else {
+                                echo
+                                ' <p class="card-text text-success">
+                                    Đang mở
+                                </p>';
+                            }
+                            ?>
+                            <!-- <a class="btn btn-primary text-white text-decoration-none" href="quanlydiemdanh.php?idLop=<?= $data['IDLop']?>">Quản Lý Điểm Danh</a>    -->
+                            
+                        </div>
                     </div>
-                </div>
-
-                <div class="card me-3" style="width: 18rem;">
-                    <img src="../assets/images/anhLogin.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Mạng Máy Tính</h5>
-                        <p class="card-text">06/02/2023 -> 02/04/2023</p>
-                        <p class="card-text">Nguyễn Thị Phương Dung</p>
-                        <a href="#" class="btn btn-primary">Kiểm tra</a>
-                    </div>
-                </div>
-
-                <div class="card me-3" style="width: 18rem;">
-                    <img src="../assets/images/anhLogin.png" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Mạng Máy Tính</h5>
-                        <p class="card-text">06/02/2023 -> 02/04/2023</p>
-                        <p class="card-text">Nguyễn Thị Phương Dung</p>
-                        <a href="#" class="btn btn-primary">Kiểm tra</a>
-                    </div>
-                </div>
-
+                <?php } ?>
             </div>
         </div>
     </div>

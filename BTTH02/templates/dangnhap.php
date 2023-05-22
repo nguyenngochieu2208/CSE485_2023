@@ -33,6 +33,45 @@
             }
         }
     }
+
+    if($role = "gv"){
+        if($email != "" && $pass != ""){
+            $db1 = new Database();
+            $giangVienDAO = new giangVienDAO($db);
+
+            $data = $giangVienDAO->getGV("SELECT * FROM giangvien WHERE email = '$email'");
+            if($pass == $data[0]["MatKhau"]){
+                $id = $data[0]["IDGiangVien"];
+                header("Location: giangvien.php?id=$id ");
+                exit;
+            }
+            else{
+                echo 
+                "
+                <h3> Thông tin đăng nhập chưa chính xác </h3>
+                ";
+            }
+        }
+    }
+
+    if($role = "qtv"){
+        if($email != "" && $pass != ""){
+            $db1 = new Database();
+            $adminDAO = new adminDAO($db);
+
+            $data = $adminDAO->getAD("SELECT * FROM quantrivien WHERE email = '$email'");
+            if($pass == $data[0]["MatKhau"]){
+                header("Location: ../admin/admin.php");
+                exit;
+            }
+            else{
+                echo 
+                "
+                <h3> Thông tin đăng nhập chưa chính xác </h3>
+                ";
+            }
+        }
+    }
 ?>
 
 
